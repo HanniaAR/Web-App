@@ -18,5 +18,21 @@ class Actions:
     
     def login(self):
         print('\nWrite your credentianls')
-        email = input('Write your email: ')
-        password = input('Write your password: ')
+        try:
+            email = input('Write your email: ')
+            password = input('Write your password: ')
+
+            usuario = Usuario('', '', email, password)
+            login = usuario.identify()
+
+            if email == login[3]:
+                print(f'Welcome {login[1]}, login succesfully')
+                self.nextActions(login)
+
+        except Exception as ex:
+            #print(type(ex))
+            #print(type(ex).__name__)
+            print('Login incorrecto')
+        
+    def nextActions(self, usuario):
+        pass
