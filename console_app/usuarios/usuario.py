@@ -1,4 +1,5 @@
 import mysql.connector
+import datetime
 
 database = mysql.connector.connect(
     host='localhost',
@@ -19,7 +20,17 @@ class Usuario:
         self.password = password
 
     def register(self):
-        pass
+        date = datetime.datetime.now()
+        sql = 'INSERT INTO usuarios VALUES(null, %s, %s, %s, %s, %s)'
+        usuario = (self.name, self.last_name, self.email, self.password, date)
+        try:
+            cursor.execute(sql, usuario)
+            database.commit()
+            result = [cursor.rowcount, self]
+        except Exception as ex:
+            result = [0, self]
+
+        return result
 
     def identify(self):
         pass
