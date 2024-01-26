@@ -1,4 +1,5 @@
 from usuarios.usuario import Usuario
+from notes.actions import Actions as NoteActions
 class Actions:
     
     def register(self):
@@ -43,10 +44,12 @@ class Actions:
               - Salir [S]
         """)
 
+        do = NoteActions()
+
         action = (input('What do you want?: ')).upper()
 
         if action == 'C':
-            print('Creando Nota...')
+            do.create(usuario)
             self.nextActions(usuario)
         elif action == 'M':
             print('Mostrando Nota(s)...')
